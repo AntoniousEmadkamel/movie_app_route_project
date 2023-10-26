@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Movie_APP_Route_Project',
       theme: MyTheme.Light,
-      initialRoute: SplashScreen.routeName,
+      initialRoute: HomeLayout.routeName,
       routes: {
-        SplashScreen.routeName: (c) => const SplashScreen(),
+        // SplashScreen.routeName: (c) => const SplashScreen(),
         HomeLayout.routeName: (c) => const HomeLayout(),
       },
     );
