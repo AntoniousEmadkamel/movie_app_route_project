@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:movie_app_route_project/layout/home_layout.dart';
 import 'package:movie_app_route_project/shared/styles/mytheme.dart';
-import 'package:movie_app_route_project/ui/screens/splash/splash_screen.dart';
 import 'firebase_options.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,9 +30,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Movie_APP_Route_Project',
       theme: MyTheme.Light,
-      initialRoute: SplashScreen.routeName,
+      initialRoute: HomeLayout.routeName,
       routes: {
-        SplashScreen.routeName: (c) => const SplashScreen(),
         HomeLayout.routeName: (c) => const HomeLayout(),
       },
     );
