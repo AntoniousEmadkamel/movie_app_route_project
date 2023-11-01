@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:movie_app_route_project/layout/home_layout.dart';
 import 'package:movie_app_route_project/shared/styles/mytheme.dart';
+import 'package:movie_app_route_project/ui/screens/Home_tab/movie_details_screen.dart';
 import 'firebase_options.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.Light,
       initialRoute: HomeLayout.routeName,
       routes: {
-        HomeLayout.routeName: (c) => const HomeLayout(),
+        HomeLayout.routeName: (context) =>  HomeLayout(),
+        MovieDetails.routeName:(context) => MovieDetails(),
       },
     );
   }

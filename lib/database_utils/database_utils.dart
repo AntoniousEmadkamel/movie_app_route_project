@@ -27,7 +27,7 @@ class DatabaseUtils {
     return mov;
   }
 
-  static Future<void> DeletTask(String id) {
+  static Future<void> DeleteMovie(String id) {
     return getMoviesCollection().doc(id).delete();
 
   }

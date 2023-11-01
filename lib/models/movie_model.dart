@@ -1,17 +1,12 @@
-
-
-
-
 import 'category_model.dart';
 
 class MoviesModel {
-  MoviesModel(
-      {this.page,
-        this.results,
-        this.totalPages,
-        this.totalResults,
-        this.status_code,
-        this.status_message});
+  MoviesModel({this.page,
+    this.results,
+    this.totalPages,
+    this.totalResults,
+    this.status_code,
+    this.status_message});
 
   MoviesModel.fromJson(dynamic json) {
     page = json['page'];
@@ -49,7 +44,6 @@ class MoviesModel {
 }
 
 
-
 class Movie {
   Movie({
     this.DataBaseId,
@@ -82,7 +76,9 @@ class Movie {
   Movie.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
-    belongsToCollection = json['belongs_to_collection'] != null ? BelongsToCollection.fromJson(json['belongs_to_collection']) : null;
+    belongsToCollection =
+    json['belongs_to_collection'] != null ? BelongsToCollection.fromJson(
+        json['belongs_to_collection']) : null;
     budget = json['budget'];
     if (json['genres'] != null) {
       genres = [];
@@ -125,8 +121,9 @@ class Movie {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
-    DataBaseId=json['DataBaseId'];
+    DataBaseId = json['DataBaseId'];
   }
+
   String? DataBaseId;
   bool? adult;
   String? backdropPath;
@@ -158,7 +155,7 @@ class Movie {
     final map = <String, dynamic>{};
     map['adult'] = adult;
     map['backdrop_path'] = backdropPath;
-    map['DataBaseId']=DataBaseId;
+    map['DataBaseId'] = DataBaseId;
     if (belongsToCollection != null) {
       map['belongs_to_collection'] = belongsToCollection?.toJson();
     }
@@ -175,16 +172,19 @@ class Movie {
     map['popularity'] = popularity;
     map['poster_path'] = posterPath;
     if (productionCompanies != null) {
-      map['production_companies'] = productionCompanies?.map((v) => v.toJson()).toList();
+      map['production_companies'] =
+          productionCompanies?.map((v) => v.toJson()).toList();
     }
     if (productionCountries != null) {
-      map['production_countries'] = productionCountries?.map((v) => v.toJson()).toList();
+      map['production_countries'] =
+          productionCountries?.map((v) => v.toJson()).toList();
     }
     map['release_date'] = releaseDate;
     map['revenue'] = revenue;
     map['runtime'] = runtime;
     if (spokenLanguages != null) {
-      map['spoken_languages'] = spokenLanguages?.map((v) => v.toJson()).toList();
+      map['spoken_languages'] =
+          spokenLanguages?.map((v) => v.toJson()).toList();
     }
     map['status'] = status;
     map['tagline'] = tagline;
@@ -212,6 +212,7 @@ class SpokenLanguages {
     iso6391 = json['iso_639_1'];
     name = json['name'];
   }
+
   String? englishName;
   String? iso6391;
   String? name;
@@ -238,6 +239,7 @@ class ProductionCountries {
     iso31661 = json['iso_3166_1'];
     name = json['name'];
   }
+
   String? iso31661;
   String? name;
 
@@ -268,6 +270,7 @@ class ProductionCompanies {
     name = json['name'];
     originCountry = json['origin_country'];
   }
+
   num? id;
   String? logoPath;
   String? name;
@@ -305,6 +308,7 @@ class BelongsToCollection {
     posterPath = json['poster_path'];
     backdropPath = json['backdrop_path'];
   }
+
   num? id;
   String? name;
   String? posterPath;
