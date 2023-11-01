@@ -89,7 +89,7 @@ class _PopularMovieWidgetState extends State<PopularMovieWidget> {
         Positioned(
           top: MediaQuery.of(context).size.height * 0.31,
           left: MediaQuery.of(context).size.height * 0.20,
-          child: Text("${widget.movie.title}",style: TextStyle(
+          child: Text(" ${widget.movie.title}",style: TextStyle(
             color: Colors.white,
             fontSize: 18,
             fontWeight: FontWeight.bold
@@ -98,7 +98,7 @@ class _PopularMovieWidgetState extends State<PopularMovieWidget> {
         Positioned(
           top: MediaQuery.of(context).size.height * 0.36,
           left: MediaQuery.of(context).size.height * 0.20,
-          child: Text("${widget.movie.releaseDate!.substring(0,4)} PG-13 ${widget.movie.originalLanguage}",
+          child: Text(" ${widget.movie.releaseDate!.substring(0,4)}  PG-13  ${widget.movie.originalLanguage}",
             style: TextStyle(
             color: Colors.grey,
             fontSize: 14,
