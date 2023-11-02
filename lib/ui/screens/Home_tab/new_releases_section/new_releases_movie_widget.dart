@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../database_utils/database_utils.dart';
 import '../../../../models/movie_model.dart';
+import '../movie_details_screen.dart';
 
 class NewReleasesMovieWidget extends StatefulWidget {
-  Movie mov;
-  NewReleasesMovieWidget(this.mov);
+  Movie movie;
+  NewReleasesMovieWidget(this.movie);
 
   @override
   State<NewReleasesMovieWidget> createState() => _NewReleasesMovieWidgetState();
@@ -16,7 +17,7 @@ class NewReleasesMovieWidget extends StatefulWidget {
 
 class _NewReleasesMovieWidgetState extends State<NewReleasesMovieWidget> {
   String img = 'https://image.tmdb.org/t/p/w500';
-  int isSelected = 0;
+  int movieSelected = 0;
 
   @override
   void initState() {
@@ -32,20 +33,26 @@ class _NewReleasesMovieWidgetState extends State<NewReleasesMovieWidget> {
           clipBehavior: Clip.antiAlias,
           shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(4)),
           elevation: 5,
-          child: CachedNetworkImage(
-            imageUrl: "$img${widget.mov.posterPath}",
-            imageBuilder: (context, imageProvider) => Container(
-              height: MediaQuery.of(context).size.height * 0.30,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, MovieDetails.routeName,
+                  arguments: widget.movie);
+            },
+            child: CachedNetworkImage(
+              imageUrl: "$img${widget.movie.posterPath}",
+              imageBuilder: (context, imageProvider) => Container(
+                height: MediaQuery.of(context).size.height * 0.30,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Center(child: Icon(Icons.error,color: Colors.red,)),
             ),
-            placeholder: (context, url) => CircularProgressIndicator(),
-            errorWidget: (context, url, error) => Center(child: Icon(Icons.error,color: Colors.red,)),
           ),
         ),
 
@@ -54,18 +61,18 @@ class _NewReleasesMovieWidgetState extends State<NewReleasesMovieWidget> {
           left: MediaQuery.of(context).size.width * 0.01,
           child: InkWell(
               onTap: (){
-                isSelected=1-isSelected;
-                if(isSelected==1){
-                 DatabaseUtils.AddMoviesToFirebase(widget.mov);
+                movieSelected=1-movieSelected;
+                if(movieSelected==1){
+                 DatabaseUtils.AddMoviesToFirebase(widget.movie);
                 }
                 else{
-                  DatabaseUtils.DeleteMovie('${widget.mov.DataBaseId}');
+                  DatabaseUtils.DeleteMovie('${widget.movie.DataBaseId}');
                 }
                 setState(() {
 
                 });
               },
-              child: isSelected == 0 ? Image.asset('assets/bookmark.png'):Image.asset('assets/bookmarkSelected.png')
+              child: movieSelected == 0 ? Image.asset('assets/bookmark.png'):Image.asset('assets/bookmarkSelected.png')
           ),
         ),
       ],
@@ -73,11 +80,11 @@ class _NewReleasesMovieWidgetState extends State<NewReleasesMovieWidget> {
   }
 
   Future<void> checkMovieInFireStore ()async{
-    QuerySnapshot<Movie> temp= await DatabaseUtils.readMovieFormFirebase(widget.mov.id!);
+    QuerySnapshot<Movie> temp= await DatabaseUtils.readMovieFormFirebase(widget.movie.id!);
     if(temp.docs.isEmpty){
     }else{
-      widget.mov.DataBaseId=temp.docs[0].data().DataBaseId;
-      isSelected=1;
+      widget.movie.DataBaseId=temp.docs[0].data().DataBaseId;
+      movieSelected=1;
       setState(() {
       });
     }
