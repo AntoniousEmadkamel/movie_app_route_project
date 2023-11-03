@@ -68,7 +68,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                             DatabaseUtils.AddMoviesToFirebase(widget.movie);
                            }
                             else {
-                            DatabaseUtils.DeletTask('${widget.movie.DataBaseId}');
+                            DatabaseUtils.DeleteMovie('${widget.movie.DataBaseId}');
                           }
                           setState(() {});
                         },
