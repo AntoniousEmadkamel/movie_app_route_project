@@ -1,26 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app_route_project/layout/home_layout.dart';
 
 import '../../../database_utils/database_utils.dart';
 import '../../../models/movie_model.dart';
-
+import '../Home_tab/movie_details_screen.dart';
 
 class SearchWidget extends StatefulWidget {
-
   Movie movie;
   SearchWidget(this.movie, {super.key});
-
 
   @override
   State<SearchWidget> createState() => _SearchWidgetState();
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
-
   String img = 'https://image.tmdb.org/t/p/w500';
   int isSelected = 0;
-
 
   @override
   void initState() {
@@ -40,25 +37,32 @@ class _SearchWidgetState extends State<SearchWidget> {
             Expanded(
               child: Stack(
                 children: [
-                  CachedNetworkImage(
-                    imageUrl: "$img${widget.movie.posterPath}",
-                    imageBuilder: (context, imageProvider) => Container(
-                      height: MediaQuery.of(context).size.height * 0.20,
-                      width: MediaQuery.of(context).size.width * 0.40,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.fill,
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, MovieDetails.routeName,
+                          arguments: widget.movie);
+                    },
+                    child: CachedNetworkImage(
+                      imageUrl: "$img${widget.movie.posterPath}",
+                      imageBuilder: (context, imageProvider) => Container(
+                        height: MediaQuery.of(context).size.height * 0.20,
+                        width: MediaQuery.of(context).size.width * 0.40,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => const Center(
+                          child: Icon(
+                        Icons.error,
+                        color: Colors.red,
+                        size: 42,
+                      )),
                     ),
-                    placeholder: (context, url) => const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => const Center(
-                        child: Icon(
-                          Icons.error,
-                          color: Colors.red,
-                          size: 42,
-                        )),
                   ),
                   Positioned(
                     child: InkWell(
@@ -66,9 +70,9 @@ class _SearchWidgetState extends State<SearchWidget> {
                           isSelected = 1 - isSelected;
                           if (isSelected == 1) {
                             DatabaseUtils.AddMoviesToFirebase(widget.movie);
-                           }
-                            else {
-                            DatabaseUtils.DeleteMovie('${widget.movie.DataBaseId}');
+                          } else {
+                            DatabaseUtils.DeleteMovie(
+                                '${widget.movie.DataBaseId}');
                           }
                           setState(() {});
                         },
@@ -119,7 +123,7 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   Future<void> checkMovieInFireStore() async {
     QuerySnapshot<Movie> temp =
-    await DatabaseUtils.readMovieFormFirebase(widget.movie.id!);
+        await DatabaseUtils.readMovieFormFirebase(widget.movie.id!);
     if (temp.docs.isEmpty) {
     } else {
       widget.movie.DataBaseId = temp.docs[0].data().DataBaseId;
