@@ -28,14 +28,14 @@ class _SearchTabState extends State<SearchTab> {
               fontSize: 25,
             ),
             controller: search,
+            onTap: () {
+              isSelected = true;
+              setState(() {});
+            },
             onFieldSubmitted: (String userInput) {
               setState(() {
                 isSelected = false ;
               });
-            },
-            onTap: () {
-              isSelected = true;
-              setState(() {});
             },
             onChanged: (value) {
               // isSelected = true;
