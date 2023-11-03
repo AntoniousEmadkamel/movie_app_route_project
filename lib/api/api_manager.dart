@@ -5,7 +5,7 @@ import '../models/category_model.dart';
 import '../models/movie_model.dart';
 class ApiManager{
   static const String baseUrl = 'https://api.themoviedb.org';
-  static const String apiKey = '26cbc7e05d6194b5462677dea5df5b1922';
+  static const String apiKey = '26cbc7e05d6194b5462677dea5df5b19';
 
 static Future<MoviesModel> getPopularMovies() async{
   var response = await http.get(Uri.parse('$baseUrl/3/movie/popular?api_key=$apiKey'));
