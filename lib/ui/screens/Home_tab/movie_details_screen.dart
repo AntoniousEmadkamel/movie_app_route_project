@@ -97,7 +97,7 @@ class _MovieDetailsState extends State<MovieDetails> {
               children: [
                 Expanded(
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 0.5,
+                    height: MediaQuery.of(context).size.height * 0.3,
                     child: Stack(
                       children: [
                         Positioned(

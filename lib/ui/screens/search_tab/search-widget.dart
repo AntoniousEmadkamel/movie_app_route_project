@@ -131,4 +131,5 @@ class _SearchWidgetState extends State<SearchWidget> {
       setState(() {});
     }
   }
+
 }

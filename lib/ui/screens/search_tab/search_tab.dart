@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_route_project/ui/screens/search_tab/search-widget.dart';
 
 import '../../../api/api_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SearchTab extends StatefulWidget {
   @override
@@ -34,7 +35,7 @@ class _SearchTabState extends State<SearchTab> {
             },
             onFieldSubmitted: (String userInput) {
               setState(() {
-                isSelected = false ;
+                isSelected = false;
               });
             },
             onChanged: (value) {
@@ -148,4 +149,5 @@ class _SearchTabState extends State<SearchTab> {
               }),
     );
   }
+
 }
