@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'colors.dart';
-
 class MyTheme {
   static ThemeData Light = ThemeData(
     scaffoldBackgroundColor: Colors.transparent,
@@ -18,17 +16,17 @@ class MyTheme {
       surface: grayColor,
       onSurface: grayColor,
     ),
-    textTheme: TextTheme(
-      headline1: const TextStyle(
+    textTheme: const TextTheme(
+      headline1: TextStyle(
           color: goldcolors, fontSize: 22, fontWeight: FontWeight.normal),
-      headline2: const TextStyle(
+      headline2: TextStyle(
           color: blublackColor, fontSize: 22, fontWeight: FontWeight.bold),
-      headline3: const TextStyle(
+      headline3: TextStyle(
           color: grayColor, fontSize: 13, fontWeight: FontWeight.normal),
-      headline4: const TextStyle(
+      headline4: TextStyle(
           color: blublackColor, fontSize: 14, fontWeight: FontWeight.w500),
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: blackColors,
       showUnselectedLabels: true,
       selectedItemColor: goldcolors,
