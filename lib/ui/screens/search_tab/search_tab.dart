@@ -4,6 +4,8 @@ import 'package:movie_app_route_project/ui/screens/search_tab/search-widget.dart
 import '../../../api/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../shared/styles/colors.dart';
+
 class SearchTab extends StatefulWidget {
   @override
   State<SearchTab> createState() => _SearchTabState();
@@ -137,7 +139,7 @@ class _SearchTabState extends State<SearchTab> {
                 }
                 return ListView.separated(
                     separatorBuilder: (context, index) => const Divider(
-                          color: Colors.grey,
+                          color: goldcolors,
                           thickness: 1,
                           indent: 25,
                           endIndent: 25,
