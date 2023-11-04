@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:movie_app_route_project/layout/home_layout.dart';
 import 'package:movie_app_route_project/shared/styles/mytheme.dart';
 import 'package:movie_app_route_project/ui/screens/Home_tab/movie_details_screen.dart';
+import 'package:movie_app_route_project/ui/screens/browse_tab/category_result.dart';
 import 'firebase_options.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
 
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeLayout.routeName: (context) =>  HomeLayout(),
         MovieDetails.routeName:(context) => MovieDetails(),
+        CategoryResult.routeName:(context) => CategoryResult(),
       },
     );
   }
