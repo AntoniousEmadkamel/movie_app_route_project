@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app_route_project/ui/screens/watchlist_fragment/watchlist_item.dart';
 
+import '../../../database_utils/database_utils.dart';
+import '../../../models/movie_model.dart';
 
 
 class WatchlistTab extends StatefulWidget {
@@ -12,8 +16,47 @@ class WatchlistTab extends StatefulWidget {
 class _WatchlistTabState extends State<WatchlistTab> {
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      color: Colors.green,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color.fromRGBO(18, 19, 18, 1.0),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text('WatchList',style: TextStyle(
+                color: Colors.white,
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+              ),),
+            ),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot<Movie>>(
+                stream: DatabaseUtils.readMoviesFormFirebase2(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator(
+                      color: Color.fromRGBO(255, 187, 59, 1.0),
+                    ));
+                  }
+                  List<Movie> messages =
+                      snapshot.data?.docs.map((task) => task.data()).toList() ?? [];
+                  return  ListView.separated(
+                    separatorBuilder: (context, index) => Divider(color: Colors.grey,thickness: 1,),
+                    itemCount: messages.length,
+                    itemBuilder: (context, index) {
+
+                      return WatchListItem(messages[index]);
+
+                    },
+
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
