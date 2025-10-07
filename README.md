@@ -246,7 +246,16 @@ lib/
 
 ## Screenshots
 
-![image alt](https://github.com/antonious-emad/movie_app_route_project/blob/master/Movies.jpg?raw=true)
+<p align="center">
+    
+<img src="https://github.com/AntoniousEmadkamel/movie_app_route_project/blob/master/splash.png" width="100"/>
+<img src="https://github.com/AntoniousEmadkamel/movie_app_route_project/blob/master/home.png" width="100"/>
+<img src="https://github.com/AntoniousEmadkamel/movie_app_route_project/blob/master/movie-details.png" width="100"/>
+<img src="https://github.com/AntoniousEmadkamel/movie_app_route_project/blob/master/search.png" width="100"/>
+<img src="https://github.com/AntoniousEmadkamel/movie_app_route_project/blob/master/search-response.png" width="100"/>
+<img src="https://github.com/AntoniousEmadkamel/movie_app_route_project/blob/master/browse.png" width="100"/>
+<img src="https://github.com/AntoniousEmadkamel/movie_app_route_project/blob/master/watchlist.png" width="100"/>
+
 
 ---
 
